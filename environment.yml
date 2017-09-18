@@ -1,4 +1,4 @@
-name: test
+name: hrtest
 dependencies:
  - python=3.6
  - numpy
