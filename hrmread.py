@@ -7,6 +7,10 @@ import csv
 def read_ecg(file='Test_ECG.csv'):
     with open (file) as ecg_Data_File:
         ecg_reader = csv.reader(ecg_Data_File)
+        # Extract data
+        # data = get my data...
+
+    # return numpy data
     return ecg_reader
 
 
@@ -31,8 +35,9 @@ def find_range(ecg_reader, peakthresh = 0.7, basethresh = 0.1):
                 toggle_peak_status = 0
     return peak_times
 
+
 def main():
-    ecg_reader = read_ecg(file)
+    ecg_reader = read_ecg()
     peak_vector = find_range(ecg_reader)
     return peak_vector
 
