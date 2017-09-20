@@ -31,6 +31,7 @@ def find_range(ecg_reader, peakthresh = 0.7, basethresh = 0.1):
                 toggle_peak_status = 0
     return peak_times
 
+
 def main():
     ecg_reader = read_ecg(file)
     peak_vector = find_range(ecg_reader)
