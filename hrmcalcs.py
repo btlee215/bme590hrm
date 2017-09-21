@@ -21,6 +21,21 @@ def hrmaverage(minutes = 2, timebeat):
         averageHR[i] = 60/avetimebeat
     return averageHR
 
+def hrmtb(instantHR):
+    tachy = []
+    brady = []
+    for i in instantHR:
+        if i > 1:
+            if i < 60 and (i-1)<60 and (i-2)<60:
+                brady.append(1)
+                tachy.append(0)
+            elif i>100 and (i-1)>100 and (i-2)>100:
+                brady.append(0)
+                tachy.append(1)
+            else:
+                brady.append(0)
+                tachy.append(0)
+    return tachy, brady
 
 def maincalcs():
     peakvalues = hrmread.main()
@@ -31,3 +46,4 @@ def maincalcs():
 
 if __name__ == "main":
     maincalcs()
+

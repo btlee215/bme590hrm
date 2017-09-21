@@ -23,10 +23,11 @@ def test_inputs():
  
 
 
-brady = [instantHR[i:i+3] for i in range(len(instantHR)-1)]
-tachy = [instantHR[i:i+3] for i in range(len(instantHR)-1)]
-for i in brady:
-	if (all(i <60 for i in brady) ) == 1:
-		"Potential Bradychardia?"
-for i in tachy:
+
+#brady = [instantHR[i:i+3] for i in range(len(instantHR)-1)]
+#tachy = [instantHR[i:i+3] for i in range(len(instantHR)-1)]
+#for i in brady:
+#	if (all(i <60 for i in brady) ) == 1:
+#		"Potential Bradychardia?"
+#for i in tachy:
 
