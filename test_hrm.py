@@ -22,8 +22,6 @@ def test_inputs():
 	assert hrmfunction.average () == "Please enter an integer input"
  
 
-
-
 #brady = [instantHR[i:i+3] for i in range(len(instantHR)-1)]
 #tachy = [instantHR[i:i+3] for i in range(len(instantHR)-1)]
 #for i in brady:
