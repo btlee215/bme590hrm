@@ -1,8 +1,9 @@
 import hrmread
 import hrmcalcs
 
+
 def test_read():
-	assert hrmread.read_ecg(file='Test_ECG.txt')== "Please check file type. Only CSV accepted" #Checks file type
+	assert hrmread.read_ecg(file='Test_ECG.txt')== 0  #Checks file type
 	assert hrmread.find_range([2,"3",4],[2,3,4],peakthresh = 0.7,basethresh = 0.1 ) == "Time values must be floats"
 	assert hrmread.find_range([0,0.5,1,1.5,2.0],[10,20,30,40,50],peakthresh = 0.7,basethresh = 0.1 ) == [2.0]
 
