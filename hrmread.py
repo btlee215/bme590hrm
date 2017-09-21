@@ -18,7 +18,10 @@ def read_ecg(file='Test_ECG.csv'):
         csv_check = 1
     else:
         csv_check = 0
-    return time, voltage, csv_check
+        time = 0
+        voltage = 0
+    return csv_check, time, voltage
+
     # else need to insert error message here for if not a csv file!
 
 
