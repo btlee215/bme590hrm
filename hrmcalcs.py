@@ -9,7 +9,7 @@ def hrminstant(timebeat):
     return instantHR
 
 
-def hrmaverage(timebeat, peakvalues, start_min, end_min):
+def hrmaverage(timebeat, peakvalues, start_min=1, end_min=3):
     start_time = 60 * start_min
     end_time = 60 * end_min
     start_index =  np.argmax(peakvalues > start_time)
@@ -45,10 +45,10 @@ def maincalcs():
     if data_type == 1:
         if csv_check == 1:
             timebeat = np.diff(peakvalues)
-            instantHR = hrminstant(timebeat, peakvalues)
-            averageHR = hrmaverage(timebeat, peakvalues, 2)
+            instantHR = hrminstant(timebeat)
+            averageHR = hrmaverage(timebeat, peakvalues)
             tachy, brady = hrmtb(instantHR)
-    return instantHR, averageHR, tachy, brady
+    return peakvalues, instantHR, averageHR, tachy, brady
 
 if __name__ == "__main__":
     maincalcs()
