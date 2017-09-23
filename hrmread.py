@@ -51,7 +51,7 @@ def find_range(time, voltage, peakthresh = 0.9, basethresh = 0.1):
     for i in voltage:
         if toggle_peak_status == 0:
             if i > (baseline + peakthresh * pos_range):
-                peak_times.append(time[count])
+                peak_times.append(round(time[count],2))
                 toggle_peak_status = 1
                 count += 1
         if toggle_peak_status == 1:
@@ -74,9 +74,6 @@ def main():
             peak_vector = 0
     return csv_check, data_type, peak_vector
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 6b3c9fecbe81e4204fb1bc80e25d38913988750a
 if __name__ == "__main__":
     main()
