@@ -11,23 +11,12 @@ def test_read():
 
 def test_instant():
     assert hrmcalcs.hrminstant(np.array([10,10,10,10])) == [6,6,6,6]
-    assert hrmcalcs.hrmaverage([0.65, 0.70, 0.80, 0.80, 0.70, 1.2],[45,85,95,110,140,185],1,3) == [80]
-# def test_average():
-#	assert hrmfunction.hrmaverage()==
-#	assert hrmfunction.hrmaverage()==
+
+
+def test_average():
+    assert hrmcalcs.hrmaverage([0.65, 0.70, 0.80, 0.80, 0.70],np.array([45,85,95,110,140,185]),1,3) == [80]
 
 
 def test_tachbrady():
     assert hrmcalcs.hrmtb([50,50,50,75,110,110,110]) ==([0,0,0,0,0,0,1],[0,0,1,0,0,0,0])
-
-#def test_inputs():
-#	assert hrmfunction.average () == "Please enter an integer input"
- 
-
-#brady = [instantHR[i:i+3] for i in range(len(instantHR)-1)]
-#tachy = [instantHR[i:i+3] for i in range(len(instantHR)-1)]
-#for i in brady:
-#	if (all(i <60 for i in brady) ) == 1:
-#		"Potential Bradychardia?"
-#for i in tachy:
 
