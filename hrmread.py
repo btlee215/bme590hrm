@@ -27,12 +27,13 @@ def read_ecg(file='Test_ECG.csv'):
 
 
 def check_data_type(time, voltage):
+    time_type=[]
+    voltage_type = []
     for i in time:
-        time_type = type(time[i])
-        voltage_type = type(voltage[i])
-    if (all(time_type == (float or int))):
-        if (all(voltage_type == (float or int))):
-            data_type = 1
+        time_type.append(type(i))
+        voltage_type.append(type(voltage[time.index(i)])
+    if (all(time_type == (float or int))) and (all(voltage_type == (float or int))):
+        data_type = 1
     else:
         data_type = 0
         print("Error: Time or voltage vector is wrong data type")
@@ -45,14 +46,19 @@ def find_range(time, voltage, peakthresh = 0.7, basethresh = 0.1):
     peak_times = []
     baseline = statistics.median(voltage)
     pos_range = max(voltage)-baseline
+    count = 0
     for i in voltage:
         if toggle_peak_status == 0:
-            if voltage[i] > (baseline + peakthresh * pos_range):
-                peak_times.append(time[i])
+            if i > (baseline + peakthresh * pos_range):
+                peak_times.append(time[count])
                 toggle_peak_status = 1
+                count += 1
         if toggle_peak_status == 1:
-            if voltage[i] < (baseline + basethresh * pos_range):
+            if i < (baseline + basethresh * pos_range):
                 toggle_peak_status = 0
+                count += 1
+        else:
+            count += 1
         peak_vector = np.array(peak_times)
     return peak_vector
 

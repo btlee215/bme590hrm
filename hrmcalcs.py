@@ -2,10 +2,10 @@ import hrmread
 import numpy as np
 
 
-def hrminstant(peakvalues):
+def hrminstant(timebeat):
     instantHR = []
-    for i in peakvalues:
-        instantHR.append(60/timebeat[i])
+    for i in timebeat:
+        instantHR.append(60/i)
     return instantHR
 
 
@@ -14,27 +14,32 @@ def hrmaverage(timebeat, minutes):
     seconds = 60*minutes # range of seconds over which to average
     # placeholder = seconds/np.array(peakvalues)
     for i in peakvalues:
-        start_index =  np.argmax(peak_values > (peakvalues[i] - seconds))
-        end_index = np.argmax(peak_values > peak_values[i]) - 1
+        start_index =  np.argmax(peak_values > (i - seconds))
+        end_index = np.argmax(peak_values > i) - 1
         timevals = timebeat[start_index:end_index]
         avetimebeat = np.average(timevals)
-        averageHR[i] = 60/avetimebeat
+        averageHR.append(60/avetimebeat)
     return averageHR
 
 def hrmtb(instantHR):
     tachy = []
     brady = []
+    count = 0
     for i in instantHR:
-        if i > 1:
-            if i < 60 and (i-1)<60 and (i-2)<60:
+        if count > 1:
+            if instantHR[count] < 60 and instantHR[count-1]<60 and instantHR[count-2]<60:
                 brady.append(1)
                 tachy.append(0)
-            elif i>100 and (i-1)>100 and (i-2)>100:
+                count += 1
+            elif instantHR[count]>100 and instantHR[count-1]>100 and instantHR[count-2]>100:
                 brady.append(0)
                 tachy.append(1)
-            else:
-                brady.append(0)
-                tachy.append(0)
+                count += 1
+        else:
+            brady.append(0)
+            tachy.append(0)
+            count += 1
+
     return tachy, brady
 
 def maincalcs():
@@ -42,7 +47,7 @@ def maincalcs():
     if data_type == 1:
         if csv_check == 1:
             timebeat = np.diff(peakvalues)
-            instantHR = hrminstant(peakvalues)
+            instantHR = hrminstant(timebeat, peakvalues)
             averageHR = hrmaverage(timebeat,2)
             tachy, brady = hrmtb(instantHR)
     return instantHR, averageHR, tachy, brady
