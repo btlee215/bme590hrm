@@ -29,14 +29,17 @@ def read_ecg(file='Test_ECG.csv'):
 def check_data_type(time, voltage):
     time_type=[]
     voltage_type = []
+    data_type = 1
     for i in time:
-        time_type.append(type(i))
-        voltage_type.append(type(voltage[time.index(i)])
-    if (all(time_type == (float or int))) and (all(voltage_type == (float or int))):
-        data_type = 1
-    else:
-        data_type = 0
-        print("Error: Time or voltage vector is wrong data type")
+        if type(i) != 'float'
+            data_type = 0
+            print("Error: Voltage vector is wrong data type")
+            break
+    for j in voltage:
+        if type(j) != 'float'
+            data_type = 0
+            print("Error: Voltage vector is wrong data type")
+            break
     return data_type
 
 
