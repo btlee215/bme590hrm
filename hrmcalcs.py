@@ -38,11 +38,14 @@ def hrmtb(instantHR):
     return tachy, brady
 
 def maincalcs():
-    peakvalues = hrmread.main()
-    timebeat = np.diff(peakvalues)
-    instantHR = hrminstant(peakvalues)
-    averageHR = hrmaverage(timebeat,2)
-    return instantHR, averageHR
+    csv_check, data_type, peakvalues = hrmread.main()
+    if data_type == 1:
+        if csv_check == 1:
+            timebeat = np.diff(peakvalues)
+            instantHR = hrminstant(peakvalues)
+            averageHR = hrmaverage(timebeat,2)
+            tachy, brady = hrmtb(instantHR)
+    return instantHR, averageHR, tachy, brady
 
 if __name__ == "main":
     maincalcs()
