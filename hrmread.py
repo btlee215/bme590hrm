@@ -20,9 +20,23 @@ def read_ecg(file='Test_ECG.csv'):
         csv_check = 0
         time = 0
         voltage = 0
+        print("Error: File is not a .csv")
     return csv_check, time, voltage
 
     # else need to insert error message here for if not a csv file!
+
+
+def check_data_type(time, voltage):
+    for i in time:
+        time_type = type(time[i])
+        voltage_type = type(voltage[i])
+    if (all(time_type == (float or int))):
+        if (all(voltage_type == (float or int))):
+            data_type = 1
+    else:
+        data_type = 0
+        print("Error: Time or voltage vector is wrong data type")
+    return data_type
 
 
 def find_range(time, voltage, peakthresh = 0.7, basethresh = 0.1):
@@ -44,9 +58,14 @@ def find_range(time, voltage, peakthresh = 0.7, basethresh = 0.1):
 
 
 def main():
-    time, voltage = read_ecg()
-    peak_vector = find_range(time, voltage)
-    return peak_vector
+    csv_check, time, voltage = read_ecg()
+    if csv_check == 1:
+        data_type = check_data_type(time, voltage)
+        if data_type == 1 :
+            peak_vector = find_range(time, voltage)
+        if data_type == 0:
+            peak_vector = 0
+    return csv_check, data_type, peak_vector
 
 if __name__ == "main":
     main()
