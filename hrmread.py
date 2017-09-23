@@ -31,12 +31,12 @@ def check_data_type(time, voltage):
     voltage_type = []
     data_type = 1
     for i in time:
-        if type(i) != 'float'
+        if type(i) != 'float':
             data_type = 0
             print("Error: Voltage vector is wrong data type")
             break
     for j in voltage:
-        if type(j) != 'float'
+        if type(j) != 'float':
             data_type = 0
             print("Error: Voltage vector is wrong data type")
             break

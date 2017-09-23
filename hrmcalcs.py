@@ -30,15 +30,16 @@ def hrmtb(instantHR):
             if instantHR[count] < 60 and instantHR[count-1]<60 and instantHR[count-2]<60:
                 brady.append(1)
                 tachy.append(0)
-                count += 1
             elif instantHR[count]>100 and instantHR[count-1]>100 and instantHR[count-2]>100:
                 brady.append(0)
                 tachy.append(1)
-                count += 1
+            else:
+                brady.append(0)
+                tachy.append(0)
         else:
             brady.append(0)
             tachy.append(0)
-            count += 1
+        count += 1
 
     return tachy, brady
 
