@@ -19,4 +19,3 @@ def test_average():
 
 def test_tachbrady():
     assert hrmcalcs.hrmtb([50,50,50,75,110,110,110]) ==([0,0,0,0,0,0,1],[0,0,1,0,0,0,0])
-
