@@ -9,16 +9,15 @@ def hrminstant(timebeat):
     return instantHR
 
 
-def hrmaverage(timebeat, peakvalues, minutes):
+def hrmaverage(timebeat, peakvalues, start_min, end_min):
     averageHR = []
-    seconds = 60*minutes # range of seconds over which to average
+    start_time = 60*start_min # range of seconds over which to average
+    end_time = 60*end_min
     # placeholder = seconds/np.array(peakvalues)
-    for i in peakvalues:
-        start_index =  np.argmax(peak_values > (i - seconds))
-        end_index = np.argmax(peak_values > i) - 1
-        timevals = timebeat[start_index:end_index]
-        avetimebeat = np.average(timevals)
-        averageHR.append(60/avetimebeat)
+    start_index =  np.argmax(peak_values > start_time)
+    end_index = np.argmax(peak_values > end_time) - 1
+    timevals = timebeat[start_index:end_index]
+    averageHR = np.average(timevals)
     return averageHR
 
 def hrmtb(instantHR):
