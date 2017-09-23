@@ -76,5 +76,5 @@ def main():
             peak_vector = 0
     return csv_check, data_type, peak_vector
 
-if __name__ == "main":
+if __name__ == "__main__":
     main()

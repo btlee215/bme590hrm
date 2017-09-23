@@ -50,6 +50,6 @@ def maincalcs():
             tachy, brady = hrmtb(instantHR)
     return instantHR, averageHR, tachy, brady
 
-if __name__ == "main":
+if __name__ == "__main__":
     maincalcs()
 
