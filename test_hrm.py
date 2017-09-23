@@ -10,9 +10,8 @@ def test_read():
 
 
 def test_instant():
-    #assert hrmcalcs.hrminstant([0.05,2.0,2.5,3.75,"5"])== "Error: Time values must be floats"
     assert hrmcalcs.hrminstant(np.array([10,10,10,10])) == [6,6,6,6]
-
+    assert hrmcalcs.hrmaverage([0.75, 0.70, 0.80, 0.80, 0.70, 1.2],[45,85,95,110,140,185],1,3) == [80]
 # def test_average():
 #	assert hrmfunction.hrmaverage()==
 #	assert hrmfunction.hrmaverage()==
