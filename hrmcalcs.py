@@ -9,7 +9,7 @@ def hrminstant(timebeat):
     return instantHR
 
 
-def hrmaverage(timebeat, minutes): 
+def hrmaverage(timebeat, peakvalues, minutes):
     averageHR = []
     seconds = 60*minutes # range of seconds over which to average
     # placeholder = seconds/np.array(peakvalues)
@@ -49,7 +49,7 @@ def maincalcs():
         if csv_check == 1:
             timebeat = np.diff(peakvalues)
             instantHR = hrminstant(timebeat, peakvalues)
-            averageHR = hrmaverage(timebeat,2)
+            averageHR = hrmaverage(timebeat, peakvalues, 2)
             tachy, brady = hrmtb(instantHR)
     return instantHR, averageHR, tachy, brady
 
