@@ -5,7 +5,7 @@ import numpy as np
 def hrminstant(timebeat):
     instantHR = []
     for i in timebeat:
-        a = round((60/i),2)
+        a = round((60/i),1)
         instantHR.append(a)
     return instantHR
 
@@ -16,7 +16,7 @@ def hrmaverage(timebeat, peakvalues, start_min=1, end_min=3):
     start_index =  np.argmax(peakvalues > start_time)
     end_index = np.argmax(peakvalues > end_time) - 1
     timevals = timebeat[start_index:(end_index-1)]
-    averageHR = round(60/np.average(timevals),2)
+    averageHR = round(60/np.average(timevals),4)
     return averageHR
 
 def hrmtb(instantHR):
