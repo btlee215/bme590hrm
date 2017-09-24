@@ -74,9 +74,6 @@ def main():
             peak_vector = 0
     return csv_check, data_type, peak_vector
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 6b3c9fecbe81e4204fb1bc80e25d38913988750a
 if __name__ == "__main__":
     main()
