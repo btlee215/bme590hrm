@@ -1,4 +1,4 @@
-name: hrtest
+name: hrmtest
 dependencies:
  - python=3.6
  - numpy
