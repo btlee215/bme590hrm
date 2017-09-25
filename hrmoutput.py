@@ -24,6 +24,7 @@ def hrmprint(peakvalues, instantHR, averageHR, tachy, brady):
         file.write("{},{},{},{}\n".format(np.round(row[0],2),np.round(row[1],2),np.round(row[2],2),np.round(row[3],2)))
     file.close()
 
+
 def main():
     """
     This function is run when the hrmoutput.py file is run in the command window. This function uses all the outputs
@@ -34,7 +35,6 @@ def main():
 
     peakvalues, instantHR, averageHR, tachy, brady = hrmcalcs.maincalcs()
     hrmprint(peakvalues, instantHR, averageHR, tachy, brady)
-
 
 
 if __name__ == "__main__":

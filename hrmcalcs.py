@@ -39,6 +39,7 @@ def hrmaverage(timebeat, peakvalues, start_min=1, end_min=3):
     averageHR = round(60/np.average(timevals),4)
     return averageHR
 
+
 def hrmtb(instantHR):
     """
     This function is used to detect whether a patient has brady (heart rate less than 60) or tachycardia (heart rate
@@ -71,6 +72,7 @@ def hrmtb(instantHR):
 
     return tachy, brady
 
+
 def maincalcs():
     """
     This function is run when the hrmcalcs.py file is run in the terminal. It takes in the peak values vector and makes
@@ -89,6 +91,7 @@ def maincalcs():
             averageHR = hrmaverage(timebeat, peakvalues)
             tachy, brady = hrmtb(instantHR)
     return peakvalues, instantHR, averageHR, tachy, brady
+
 
 if __name__ == "__main__":
     maincalcs()
