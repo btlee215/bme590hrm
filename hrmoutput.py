@@ -28,7 +28,7 @@ def main():
     """
     This function is run when the hrmoutput.py file is run in the command window. This function uses all the outputs
     from the hrmcalcs function and runs the hrmprint() function described above
-    :return: This function returns an output text file with the desired values from the cardiac monitor. 
+    :return: This function returns an output text file with the desired values from the cardiac monitor.
 
     """
 
