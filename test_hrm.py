@@ -5,7 +5,7 @@ import numpy as np
 
 def test_read():
     assert hrmread.read_ecg(file='Test_ECG.txt')== (0,0,0)  #Checks file type
-    assert hrmread.check_data_type([2,"3",4],[2,3,4]) == 0 # Checks that times and voltages are floats
+    assert hrmread.check_data_type([2,"three",4],[2,3,4]) == 0 # Checks that times and voltages are floats
     assert hrmread.find_range([0,0.5,1,1.5,2.0],[10,20,30,40,50],peakthresh = 0.7,basethresh = 0.1 ) == [2.0]
 
 
