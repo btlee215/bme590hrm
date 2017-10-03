@@ -1,28 +1,29 @@
 import hrmcalcs
+import numpy as np
 
 
-def hrmprint(peakvalues, instantHR, tachy, brady):
+def hrmprint(peakvalues, instantHR, averageHR, tachy, brady):
     """
-    This function is used to write the output from our cardiac heart rate monitor to a text file. The function inputs
-    have been returned from the hrmcalcs.py file and a new text file with the output from the cardiac monitor titled
-    "hrmoutput.txt" has been created.
+       This function is used to write the output from our cardiac heart rate monitor to a text file. The function inputs
+       have been returned from the hrmcalcs.py file and a new text file with the output from the cardiac monitor titled
+       "hrmoutput.txt" has been created.
 
-    :param peakvalues: array containing time points at which voltage condition was met to detect a heart beat. All vals
-    are in terms of time (s)
-    :param instantHR: array of instantaneous heart rate values
-    :param tachy: an array containing a '1' at time points where tachycardia was detected
-    :param brady: an array containing a '1' at time points where bradycardia was detected
-    :return: This function returns a text output file with the desired values from the cardiac monitor. The output has
-    been rounded to decimal points for formatting + aesthetic purposes.
+       :param peakvalues: array containing time points at which voltage condition was met to detect a heart beat. All vals
+       are in terms of time (s)
+       :param instantHR: array of instantaneous heart rate values
+       :param tachy: an array containing a '1' at time points where tachycardia was detected
+       :param brady: an array containing a '1' at time points where bradycardia was detected
+       :return: This function returns a text output file with the desired values from the cardiac monitor. The output has
+       been rounded to decimal points for formatting + aesthetic purposes.
 
-    """
-
+       """
     file = open("hrmoutput.txt", "w")
-    file.write("'Time (s)','Instant HR','Bradycardia','Tachycardia'\n")
+    file.write("Average HR in Interval: {} \n".format(np.round(averageHR,2)))
+    file.write("Time of Heartbeat (s), Instant HR, Bradycardia (0/1), Tachycardia (0/1)\n")
     for row in list(zip(peakvalues, instantHR, brady, tachy)):
-        out = print(str(row))
-        file.write("{}\n".format(row))
+        file.write("{},{},{},{}\n".format(np.round(row[0],2),np.round(row[1],2),np.round(row[2],2),np.round(row[3],2)))
     file.close()
+
 
 def main():
     """
@@ -33,9 +34,8 @@ def main():
     """
 
     peakvalues, instantHR, averageHR, tachy, brady = hrmcalcs.maincalcs()
-    hrmprint(peakvalues, instantHR, tachy, brady)
-    print (peakvalues)
-    print (instantHR)
+    hrmprint(peakvalues, instantHR, averageHR, tachy, brady)
+
 
 if __name__ == "__main__":
     main()
