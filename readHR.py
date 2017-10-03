@@ -24,7 +24,7 @@ class EcgReader(object):
         self.file = file
         if file.endswith('.csv'):
             self.csv_check = 1
-        else
+        else:
             self.csv_check = 0
             self.time = 0
             self.voltage = 0
@@ -64,36 +64,25 @@ class EcgReader(object):
                 self.data_type = 0
                 print("Error: Time vector is wrong data type")
                 break
-        for j in voltage:
+        for j in self.voltage:
             if type(j) == str:
-                data_type = 0
+                self.data_type = 0
                 print("Error: Voltage vector is wrong data type")
                 break
 
 
     def findRange(self, peakthresh = 0.9, basethresh = 0.1):
-    """
-    This function is used to determine the range of what is considered a heartbeat. The peak and base thresholds have
-    been set in order to use the toggle_peak_status variable to detect the time values where a beat occurs.
-    :param time: Time in seconds as output by the read_ecg function
-    :param voltage: Voltage in volts as output by the read_ecg function
-    :param peakthresh: User-inputted peak threshold value. Default is set to 0.9
-    :param basethresh: User-inputted base threshold value. Default is set to 0.1
-    :return: This function will return an array titled peak_vector with the time values at which heart beats
-    were detected.
-
-    """
 
         toggle_peak_status = 0
         import statistics
-        self.peak_times = []
+        peak_times = []
         baseline = statistics.median(self.voltage)
         pos_range = max(self.voltage)-baseline
         count = 0
-        for i in voltage:
+        for i in self.voltage:
             if toggle_peak_status == 0:
                 if i > (baseline + peakthresh * pos_range):
-                    peak_times.append(round(time[count],2))
+                    peak_times.append(round(self.time[count],2))
                     toggle_peak_status = 1
                     count += 1
             if toggle_peak_status == 1:
@@ -103,4 +92,3 @@ class EcgReader(object):
             else:
                 count += 1
             self.peak_vector = np.array(peak_times)
-
