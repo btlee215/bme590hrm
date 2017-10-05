@@ -17,12 +17,13 @@ def hrmprint(peakvalues, instantHR, averageHR, tachy, brady):
        been rounded to decimal points for formatting + aesthetic purposes.
 
        """
-    file = open("hrmoutput.txt", "w")
-    file.write("Average HR in Interval: {} \n".format(np.round(averageHR,2)))
-    file.write("Time of Heartbeat (s), Instant HR, Bradycardia (0/1), Tachycardia (0/1)\n")
-    for row in list(zip(peakvalues, instantHR, brady, tachy)):
-        file.write("{},{},{},{}\n".format(np.round(row[0],2),np.round(row[1],2),np.round(row[2],2),np.round(row[3],2)))
-    file.close()
+
+    with open("hrmoutput.txt", "w") as f:
+        f.write("Average HR in Interval: {} \n".format(np.round(averageHR,2)))
+        f.write("Time of Heartbeat (s), Instant HR, Bradycardia (0/1), Tachycardia (0/1)\n")
+        for row in list(zip(peakvalues, instantHR, brady, tachy)):
+            f.write("{},{},{},{}\n".format(np.round(row[0],2),np.round(row[1],2),np.round(row[2],2),np.round(row[3],2)))
+        f.close()
 
 
 def main():
