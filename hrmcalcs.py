@@ -6,9 +6,11 @@ def hrminstant(timebeat):
     """
     This function is used to calculate the instantaneous heart rate
     at each heartbeat detected from the CSV file.
+
     :param timebeat: amount of time between consecutive heart beats.
     Calculated by taking the difference of consecutive data points
     in the peak values vector
+
     :return: This calculation returns the instantaneous heart rate
     at each time value.
 
@@ -32,6 +34,7 @@ def hrmaverage(timebeat, peakvalues, start_min=1, end_min=3):
     ondition was met to detect a heart beat. All vals are in terms of time (s)
     :param start_min: User inputs start minute of average HR calculation
     :param end_min: User inputs end minute of average HR calculation
+
     :return: This calculations returns the average heart rate
     over the user-defined range of minutes.
 
@@ -50,16 +53,18 @@ def hrmtb(instant_hr, b_thresh=60, t_thresh=100):
     """
     This function is used to detect whether a patient has bradycardia
      or tachycardia
+
     :param instant_hr: array of instantaneous heart rate values
+    :param b_thresh: The threshold value for heart rate
+    indicating bradycardia (default 60)
+    :param t_thresh: The threshold value for heart rate
+    indicating tachycardia (default 100)
+
     :return: This function returns arrays titled tachy and brady.
     Both arrays are filled with 0s and 1s with a 1
     representing the detection of tachycardia or bradycardia.
     Note: in order for either diagnosis to be recorded, the heart rate
     condition must be met for three consecutive heart beats.
-    :param b_thresh: The threshold value for heart rate
-    indicating bradycardia (default 60)
-    :param t_thresh: The threshold value for heart rate
-    indicating tachycardia (default 100)
 
     """
 
@@ -94,6 +99,7 @@ def maincalcs(file):
     This function is run when the hrmcalcs.py file is run in the terminal.
     It takes in the peak values vector and makes the calculations needed
     to meet the code criteria specified in the assignment.
+
     :return: This function returns an array with the time values at which
     heartbeats were recorded, the instant HR at each time point, the average
     heart rate over a user-specified range of minutes, and arrays indicating

@@ -17,6 +17,7 @@ def hrmprint(file, peakvalues, instant_hr, average_hr, tachy, brady):
        tachycardia was detected
        :param brady: an array containing a '1' at time points where
        bradycardia was detected
+
        :return: This function returns a text output file with the desired
        values from the cardiac monitor. The output has been rounded to decimal
        points for formatting + aesthetic purposes.
@@ -40,6 +41,7 @@ def main(file='Test_ECG.csv'):
     This function is run when the hrmoutput.py file is run in the command
     window. This function uses all the outputs from the hrmcalcs function
     and runs the hrmprint() function described above
+    
     :return: This function returns an output text file with the desired values
     from the cardiac monitor.
 
