@@ -40,7 +40,7 @@ def hrmaverage(timebeat, peakvalues, start_min=1, end_min=3):
     return averageHR
 
 
-def hrmtb(instantHR):
+def hrmtb(instantHR, b_thresh = 60, t_thresh = 100):
     """
     This function is used to detect whether a patient has brady (heart rate less than 60) or tachycardia (heart rate
     above 100)
@@ -56,10 +56,10 @@ def hrmtb(instantHR):
     count = 0
     for i in instantHR:
         if count > 1:
-            if instantHR[count] < 60 and instantHR[count-1]<60 and instantHR[count-2]<60:
+            if instantHR[count] < b_thresh and instantHR[count-1]<b_thresh and instantHR[count-2]<b_thresh:
                 brady.append(1)
                 tachy.append(0)
-            elif instantHR[count]>100 and instantHR[count-1]>100 and instantHR[count-2]>100:
+            elif instantHR[count]>t_thresh and instantHR[count-1]>t_thresh and instantHR[count-2]>t_thresh:
                 brady.append(0)
                 tachy.append(1)
             else:
