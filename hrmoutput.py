@@ -9,11 +9,15 @@ def hrmprint(file, peakvalues, instant_hr, average_hr, tachy, brady):
     hrmcalcs.py file and a new text file with the output from the cardiac
     monitor titled "hrmoutput.txt" has been created.
 
+    :param file: specifies csv file for ECG data
+
     :param peakvalues: array containing time points at which voltage
     condition was met to detect a heart beat. All values are in terms of
     time (s)
 
-    :param instantHR: array of instantaneous heart rate values
+    :param instant_hr: array of instantaneous heart rate values
+
+    :param average_hr: average heart rate over user-specified minute range
 
     :param tachy: an array containing a '1' at time points where
     tachycardia was detected
@@ -26,9 +30,10 @@ def hrmprint(file, peakvalues, instant_hr, average_hr, tachy, brady):
     points for formatting + aesthetic purposes.
 
     """
-    save_name = file.replace(".csv","_HRoutput.txt")
+    save_name = file.replace(".csv", "_HRoutput.txt")
     with open(save_name, "w") as f:
-        f.write("Average HR in Interval: {} \n".format(np.round(average_hr, 2)))
+        f.write("Average HR in Interval: {} \n".
+                format(np.round(average_hr, 2)))
         f.write("Time of Heartbeat (s), Instant HR, Bradycardia (0/1), "
                 "Tachycardia (0/1)\n")
         for row in list(zip(peakvalues, instant_hr, brady, tachy)):
@@ -39,7 +44,7 @@ def hrmprint(file, peakvalues, instant_hr, average_hr, tachy, brady):
         f.close()
 
 
-def main(file='Test_ECG.csv'):
+def main(file='Test_ECG.csv', start_min=1, end_min=3, b_thresh=60, t_thresh=100):
     """
     This function is run when the hrmoutput.py file is run in the command
     window. This function uses all the outputs from the hrmcalcs function
@@ -50,7 +55,8 @@ def main(file='Test_ECG.csv'):
 
     """
 
-    peakvalues, instant_hr, average_hr, tachy, brady = hrmcalcs.maincalcs(file)
+    peakvalues, instant_hr, average_hr, tachy, brady = \
+        hrmcalcs.maincalcs(file, start_min, end_min, b_thresh, t_thresh)
     hrmprint(file, peakvalues, instant_hr, average_hr, tachy, brady)
 
 

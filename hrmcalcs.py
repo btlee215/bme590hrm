@@ -23,7 +23,7 @@ def hrminstant(timebeat):
     return instant_hr
 
 
-def hrmaverage(timebeat, peakvalues, start_min=1, end_min=3):
+def hrmaverage(timebeat, peakvalues, start_min, end_min):
     """
     This function is used to calculate the average heart rate
     over a user-specified time range.
@@ -53,7 +53,7 @@ def hrmaverage(timebeat, peakvalues, start_min=1, end_min=3):
     return average_hr
 
 
-def hrmtb(instant_hr, b_thresh=60, t_thresh=100):
+def hrmtb(instant_hr, b_thresh, t_thresh):
     """
     This function is used to detect whether a patient has bradycardia
      or tachycardia
@@ -100,7 +100,7 @@ def hrmtb(instant_hr, b_thresh=60, t_thresh=100):
     return tachy, brady
 
 
-def maincalcs(file):
+def maincalcs(file,start_min,end_min,b_thresh,t_thresh):
     """
     This function is run when the hrmcalcs.py file is run in the terminal.
     It takes in the peak values vector and makes the calculations needed
@@ -118,8 +118,8 @@ def maincalcs(file):
         if csv_check == 1:
             timebeat = np.diff(peakvalues)
             instant_hr = hrminstant(timebeat)
-            average_hr = hrmaverage(timebeat, peakvalues)
-            tachy, brady = hrmtb(instant_hr)
+            average_hr = hrmaverage(timebeat, peakvalues,start_min,end_min)
+            tachy, brady = hrmtb(instant_hr,b_thresh,t_thresh)
     return peakvalues, instant_hr, average_hr, tachy, brady
 
 
