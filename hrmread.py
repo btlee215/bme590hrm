@@ -50,6 +50,7 @@ def check_data_type(time, voltage):
 
     :param time: Array of time values from .CSV file and returned in an array
     by read_ecg file
+
     :param voltage: Array of voltage values from .CSV file and returned in an
     array by read_ecg file
 
@@ -79,8 +80,11 @@ def find_range(time, voltage, peakthresh=0.9, basethresh=0.1):
     toggle_peak_status variable to detect the time values where a beat occurs.
 
     :param time: Time in seconds as output by the read_ecg function
+
     :param voltage: Voltage in volts as output by the read_ecg function
+
     :param peakthresh: User-inputted peak threshold value. Default is 0.9
+
     :param basethresh: User-inputted base threshold value. Default is 0.1
 
     :return: This function will return an array titled peak_vector with the

@@ -12,9 +12,12 @@ def hrmprint(file, peakvalues, instant_hr, average_hr, tachy, brady):
     :param peakvalues: array containing time points at which voltage
     condition was met to detect a heart beat. All values are in terms of
     time (s)
+
     :param instantHR: array of instantaneous heart rate values
+
     :param tachy: an array containing a '1' at time points where
     tachycardia was detected
+
     :param brady: an array containing a '1' at time points where
     bradycardia was detected
 

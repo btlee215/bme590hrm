@@ -31,9 +31,12 @@ def hrmaverage(timebeat, peakvalues, start_min=1, end_min=3):
     :param timebeat: amount of time between consecutive heart beats.
     Calculated by taking the difference of consecutive data points
     in the peak values vector
-    :param peakvalues: array containing time points at which voltage c
-    ondition was met to detect a heart beat. All vals are in terms of time (s)
+
+    :param peakvalues: array containing time points at which voltage
+    condition was met to detect a heart beat. All vals are in terms of time(s)
+
     :param start_min: User inputs start minute of average HR calculation
+
     :param end_min: User inputs end minute of average HR calculation
 
     :return: This calculations returns the average heart rate
@@ -56,6 +59,7 @@ def hrmtb(instant_hr, b_thresh=60, t_thresh=100):
      or tachycardia
 
     :param instant_hr: array of instantaneous heart rate values
+
     :param b_thresh: The threshold value for heart rate
     indicating bradycardia (default 60)
 
