@@ -89,7 +89,7 @@ def hrmtb(instant_hr, b_thresh=60, t_thresh=100):
     return tachy, brady
 
 
-def maincalcs():
+def maincalcs(file):
     """
     This function is run when the hrmcalcs.py file is run in the terminal.
     It takes in the peak values vector and makes the calculations needed
@@ -101,13 +101,13 @@ def maincalcs():
 
     """
 
-    csv_check, data_type, peakvalues = hrmread.main()
+    csv_check, data_type, peakvalues = hrmread.main(file)
     if data_type == 1:
         if csv_check == 1:
             timebeat = np.diff(peakvalues)
             instant_hr = hrminstant(timebeat)
             average_hr = hrmaverage(timebeat, peakvalues)
-            tachy, brady = hrmtb(instantHR)
+            tachy, brady = hrmtb(instant_hr)
     return peakvalues, instant_hr, average_hr, tachy, brady
 
 

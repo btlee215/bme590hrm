@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 # this file should read in the csv file, sort into time and voltage
 # should also output vector of times of each heartbeat
+import csv
+import numpy as np
 
-
-def read_ecg(file='Test_ECG.csv'):
+def read_ecg(file):
     """
     This function takes in ECG data from a CSV file inputted by the user,
     reads it and separates the data into time and voltage.
@@ -103,7 +104,7 @@ def find_range(time, voltage, peakthresh=0.9, basethresh=0.1):
     return peak_vector
 
 
-def main():
+def main(file):
     """
     This function is run when the hrmread.py file is run and reads the file,
     checks the data type of the time and voltage variables, and finds the
@@ -115,7 +116,7 @@ def main():
     """
     import csv
     import numpy as np
-    csv_check, time, voltage = read_ecg()
+    csv_check, time, voltage = read_ecg(file)
     if csv_check == 1:
         data_type = check_data_type(time, voltage)
         if data_type == 1:
