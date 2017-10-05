@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 # this file should read in the csv file, sort into time and voltage
 # should also output vector of times of each heartbeat
-import csv
-import numpy as np
 
 
 def read_ecg(file='Test_ECG.csv'):
@@ -115,7 +113,8 @@ def main():
     at which a beat was detected
 
     """
-
+    import csv
+    import numpy as np
     csv_check, time, voltage = read_ecg()
     if csv_check == 1:
         data_type = check_data_type(time, voltage)
