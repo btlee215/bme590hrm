@@ -42,32 +42,70 @@
 <span id="hrmoutput-module"></span><h1>hrmoutput module<a class="headerlink" href="#module-hrmoutput" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="hrmoutput.hrmprint">
-<code class="descclassname">hrmoutput.</code><code class="descname">hrmprint</code><span class="sig-paren">(</span><em>peakvalues</em>, <em>instantHR</em>, <em>averageHR</em>, <em>tachy</em>, <em>brady</em><span class="sig-paren">)</span><a class="headerlink" href="#hrmoutput.hrmprint" title="Permalink to this definition">¶</a></dt>
-<dd><p>This function is used to write the output from our cardiac heart rate monitor to a text file. The function inputs
-have been returned from the hrmcalcs.py file and a new text file with the output from the cardiac monitor titled
-“hrmoutput.txt” has been created.</p>
+<code class="descclassname">hrmoutput.</code><code class="descname">hrmprint</code><span class="sig-paren">(</span><em>file</em>, <em>peakvalues</em>, <em>instant_hr</em>, <em>average_hr</em>, <em>tachy</em>, <em>brady</em><span class="sig-paren">)</span><a class="headerlink" href="#hrmoutput.hrmprint" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function is used to write the output from our cardiac heart rate
+monitor to a text file. The function inputs have been returned from the
+hrmcalcs.py file and a new text file with the output from the cardiac
+monitor titled “hrmoutput.txt” has been created.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>peakvalues</strong> – array containing time points at which voltage condition was met to detect a heart beat. All vals</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>peakvalues</strong> – array containing time points at which voltage</td>
 </tr>
 </tbody>
 </table>
-<p>are in terms of time (s)
-:param instantHR: array of instantaneous heart rate values
-:param tachy: an array containing a ‘1’ at time points where tachycardia was detected
-:param brady: an array containing a ‘1’ at time points where bradycardia was detected
-:return: This function returns a text output file with the desired values from the cardiac monitor. The output has
-been rounded to decimal points for formatting + aesthetic purposes.</p>
+<p>condition was met to detect a heart beat. All values are in terms of
+time (s)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>instantHR</strong> – array of instantaneous heart rate values</li>
+<li><strong>tachy</strong> – an array containing a ‘1’ at time points where</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>tachycardia was detected</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>brady</strong> – an array containing a ‘1’ at time points where</td>
+</tr>
+</tbody>
+</table>
+<p>bradycardia was detected</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">This function returns a text output file with the desired</td>
+</tr>
+</tbody>
+</table>
+<p>values from the cardiac monitor. The output has been rounded to decimal
+points for formatting + aesthetic purposes.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="hrmoutput.main">
-<code class="descclassname">hrmoutput.</code><code class="descname">main</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#hrmoutput.main" title="Permalink to this definition">¶</a></dt>
-<dd><p>This function is run when the hrmoutput.py file is run in the command window. This function uses all the outputs
-from the hrmcalcs function and runs the hrmprint() function described above
-:return: This function returns an output text file with the desired values from the cardiac monitor.</p>
+<code class="descclassname">hrmoutput.</code><code class="descname">main</code><span class="sig-paren">(</span><em>file='Test_ECG.csv'</em><span class="sig-paren">)</span><a class="headerlink" href="#hrmoutput.main" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function is run when the hrmoutput.py file is run in the command
+window. This function uses all the outputs from the hrmcalcs function
+and runs the hrmprint() function described above</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">This function returns an output text file with the desired values</td>
+</tr>
+</tbody>
+</table>
+<p>from the cardiac monitor.</p>
 </dd></dl>
 
 </div>
