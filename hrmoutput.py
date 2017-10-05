@@ -4,25 +4,25 @@ import numpy as np
 
 def hrmprint(file, peakvalues, instant_hr, average_hr, tachy, brady):
     """
-       This function is used to write the output from our cardiac heart rate
-       monitor to a text file. The function inputs have been returned from the
-       hrmcalcs.py file and a new text file with the output from the cardiac
-       monitor titled "hrmoutput.txt" has been created.
+    This function is used to write the output from our cardiac heart rate
+    monitor to a text file. The function inputs have been returned from the
+    hrmcalcs.py file and a new text file with the output from the cardiac
+    monitor titled "hrmoutput.txt" has been created.
 
-       :param peakvalues: array containing time points at which voltage
-       condition was met to detect a heart beat. All values are in terms of
-       time (s)
-       :param instantHR: array of instantaneous heart rate values
-       :param tachy: an array containing a '1' at time points where
-       tachycardia was detected
-       :param brady: an array containing a '1' at time points where
-       bradycardia was detected
+    :param peakvalues: array containing time points at which voltage
+    condition was met to detect a heart beat. All values are in terms of
+    time (s)
+    :param instantHR: array of instantaneous heart rate values
+    :param tachy: an array containing a '1' at time points where
+    tachycardia was detected
+    :param brady: an array containing a '1' at time points where
+    bradycardia was detected
 
-       :return: This function returns a text output file with the desired
-       values from the cardiac monitor. The output has been rounded to decimal
-       points for formatting + aesthetic purposes.
+    :return: This function returns a text output file with the desired
+    values from the cardiac monitor. The output has been rounded to decimal
+    points for formatting + aesthetic purposes.
 
-       """
+    """
     save_name = file.replace(".csv","_HRoutput.txt")
     with open(save_name, "w") as f:
         f.write("Average HR in Interval: {} \n".format(np.round(average_hr, 2)))

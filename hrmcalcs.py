@@ -27,6 +27,7 @@ def hrmaverage(timebeat, peakvalues, start_min=1, end_min=3):
     """
     This function is used to calculate the average heart rate
     over a user-specified time range.
+
     :param timebeat: amount of time between consecutive heart beats.
     Calculated by taking the difference of consecutive data points
     in the peak values vector
@@ -57,6 +58,7 @@ def hrmtb(instant_hr, b_thresh=60, t_thresh=100):
     :param instant_hr: array of instantaneous heart rate values
     :param b_thresh: The threshold value for heart rate
     indicating bradycardia (default 60)
+
     :param t_thresh: The threshold value for heart rate
     indicating tachycardia (default 100)
 
