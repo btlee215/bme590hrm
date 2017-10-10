@@ -4,7 +4,8 @@
 import csv
 import numpy as np
 
-class EcgReader(object):
+
+class EcgReader():
     """
        This function takes in ECG data from a CSV file inputted by the user, reads it and separates the data into time and
        voltage.
@@ -14,11 +15,12 @@ class EcgReader(object):
 
        """
 
-    def __init__(self):
-        self.filecheck(file = 'Test_ECG.csv')
+    def __init__(self,file):
+        self.filecheck(file)
         self.readFile()
         self.dataCheck()
         self.findRange()
+
 
     def filecheck(self, file):
         self.file = file
@@ -29,6 +31,7 @@ class EcgReader(object):
             self.time = 0
             self.voltage = 0
             print("Error: File is not a .csv")
+
 
     def readFile(self):
         self.time = []

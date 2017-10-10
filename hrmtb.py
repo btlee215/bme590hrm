@@ -5,7 +5,7 @@ class TachyBrady:
     def __init__(self, instant_hr):
         self.instant_hr = instant_hr
 
-    def tb(self, brady_limit=60, tachy_limit=100):
+    def tb(self, brady_limit, tachy_limit):
         tachy = []
         brady = []
         count = 0
@@ -28,4 +28,3 @@ class TachyBrady:
                 brady.append(0)
                 tachy.append(0)
             count += 1
-        return tachy, brady
