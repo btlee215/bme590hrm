@@ -15,11 +15,12 @@ class EcgReader():
 
        """
 
-    def __init__(self,file):
+    def __init__(self, file):
         self.filecheck(file)
         self.readFile()
         self.dataCheck()
-        self.findRange()
+        if self.data_type == 1 and self.csv_check == 1:
+            self.findRange()
 
 
     def filecheck(self, file):
