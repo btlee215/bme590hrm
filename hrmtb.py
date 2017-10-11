@@ -2,26 +2,29 @@ import numpy as np
 
 
 class TachyBrady:
-    def __init__(self, instantHR):
-        self.instantHR = instantHR
+    def __init__(self, instant_hr):
+        self.instant_hr = instant_hr
 
-    def tb(self):
-        tachy = []
-        brady = []
+    def tb(self, brady_limit, tachy_limit):
+        self.tachy = []
+        self.brady = []
         count = 0
-        for i in self.instantHR:
+        for i in self.instant_hr:
             if count > 1:
-                if self.instantHR[count] < 60 and self.instantHR[count - 1] < 60 and self.instantHR[count - 2] < 60:
-                    brady.append(1)
-                    tachy.append(0)
-                elif self.instantHR[count] > 100 and self.instantHR[count - 1] > 100 and self.instantHR[count - 2] > 100:
-                    brady.append(0)
-                    tachy.append(1)
+                if self.instant_hr[count] < brady_limit and \
+                                self.instant_hr[count - 1] < brady_limit and \
+                                self.instant_hr[count - 2] < brady_limit:
+                    self.brady.append(1)
+                    self.tachy.append(0)
+                elif self.instant_hr[count] > tachy_limit and \
+                                self.instant_hr[count - 1] > tachy_limit and \
+                                self.instant_hr[count - 2] > tachy_limit:
+                    self.brady.append(0)
+                    self.tachy.append(1)
                 else:
-                    brady.append(0)
-                    tachy.append(0)
+                    self.brady.append(0)
+                    self.tachy.append(0)
             else:
-                brady.append(0)
-                tachy.append(0)
+                self.brady.append(0)
+                self.tachy.append(0)
             count += 1
-        return tachy, brady
