@@ -4,9 +4,11 @@ from readHR import EcgReader
 from hrmcalcs2oo import hrmcalcs
 from hrmtb import TachyBrady
 
+
 class HrmOutput:
 
-    def __init__(self, file = 'Test_ECG.csv', start_min = 3, end_min = 5, brady_limit=60, tachy_limit=100):
+    def __init__(self, file='Test_ECG.csv', start_min=3, end_min=5,
+                 brady_limit=60, tachy_limit=100):
         self.extract_vals(file, start_min, end_min, brady_limit, tachy_limit)
         self.file = file
         self.print_hrmoutput()
@@ -26,7 +28,7 @@ class HrmOutput:
         self.brady = tb_ecg.brady
 
     def print_hrmoutput(self):
-        save_name = self.file.replace(".csv","_HRoutput.txt")
+        save_name = self.file.replace(".csv", "_HRoutput.txt")
         with open(save_name, "w") as f:
             f.write("Average HR in Interval: {} \n".format(np.round(self.average_hr)))
             f.write("Time of Heartbeat (s), Instant HR, Bradycardia (0/1), "

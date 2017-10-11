@@ -1,29 +1,28 @@
-#!/usr/bin/env python
-# this file should read in the csv file, sort into time and voltage
-# should also output vector of times of each heartbeat
 import csv
 import numpy as np
 
 
-class EcgReader():
-    """
-       This function takes in ECG data from a CSV file inputted by the user, reads it and separates the data into time and
-       voltage.
-       :param file: A CSV file being tested by the user
-       :return: If the file is not a CSV, the function will raise "Error: File is not a .csv". For CSV files, the function
-       will return a separate time and voltage array with values extracted from the data file.
-
-       """
+class EcgReader:
 
     def __init__(self, file):
         self.filecheck(file)
-        self.readFile()
-        self.dataCheck()
+        self.readfile()
+        self.datacheck()
         if self.data_type == 1 and self.csv_check == 1:
-            self.findRange()
-
+            self.findrange()
 
     def filecheck(self, file):
+        """
+            This method takes in ECG data from a CSV file inputted by the user,
+            and checks that it is the correct file format.
+
+            :param file: A CSV file being tested by the user
+
+            :return: If the file is not a CSV, the function will raise
+            "Error: File is not a .csv". For CSV files, the initialization
+            will move on to the next step.
+
+        """
         self.file = file
         if file.endswith('.csv'):
             self.csv_check = 1
@@ -33,12 +32,18 @@ class EcgReader():
             self.voltage = 0
             print("Error: File is not a .csv")
 
+    def readfile(self):
+        """
+        This method reads the contents of the csv file and attempts to convert
+        numeric strings into floats before adding to time and voltage vectors.
 
-    def readFile(self):
+        :return: Time and voltage vectors with each entry from columns in the
+        original csv file.
+        """
         self.time = []
         self.voltage = []
         if self.file.endswith('.csv'):
-            with open (self.file) as ecg_Data_File:
+            with open(self.file) as ecg_Data_File:
                 ecg_reader = csv.reader(ecg_Data_File)
                 next(ecg_reader)
                 for row in ecg_reader:
@@ -53,13 +58,22 @@ class EcgReader():
                     except:
                         self.voltage.append(row[1])
 
-    def dataCheck(self):
+    def datacheck(self):
         """
-            This function takes in the time and voltage arrays and ensures that the data type for every element is a float.
-            :param time: Array of time values from .CSV file and returned in an array by read_ecg file
-            :param voltage: Array of voltage values from .CSV file and returned in an array by read_ecg file
-            :return: If a particular element in time or voltage is not a float, the function will raise "Error: Time vector is
-            wrong data type".
+            This method takes in the time and voltage arrays and ensures that
+            the data type for every element is a float.
+
+            :param self.time: Array of time values from .CSV file assigned to class
+
+            :param self.voltage: Array of voltage values from .CSV file assigned to
+            object of class EcgReader
+
+            :return: If a particular element in time or voltage is not a float,
+            the function will raise "Error: Time vector is wrong data type".
+
+            :return: self.data_type is a 1 if numeric and 0 if any entries are
+            strings. If data_type is 0, some of the remaining initialization
+            steps will not be performed.
 
             """
         self.data_type = 1
@@ -74,8 +88,7 @@ class EcgReader():
                 print("Error: Voltage vector is wrong data type")
                 break
 
-
-    def findRange(self, peakthresh = 0.9, basethresh = 0.1):
+    def findrange(self, peakthresh=0.9, basethresh=0.1):
 
         toggle_peak_status = 0
         import statistics

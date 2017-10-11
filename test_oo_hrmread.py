@@ -5,9 +5,11 @@ from readHR import EcgReader
 
 def test_filecheck():
     """
-    :return: This function is used as a unit test for the hrmread.py file. In this test, the following conditions are
-    tested: whether the file input by the user is in .CSV format, whether the time and voltage values from the file are
-    floats, and whether the code correctly determines the time point a beat occured at.
+    :return: This function is used as a unit test for the hrmread.py file.
+    In this test, the following conditions are tested: whether the file
+    input by the user is in .CSV format, whether the time and voltage
+    values from the file are floats, and whether the code correctly
+    determines the time point a beat occured at.
 
     """
     read_hr_1 = EcgReader('Test_ECG.txt')
