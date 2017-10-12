@@ -6,10 +6,10 @@ class TachyBrady:
         self.instant_hr = instant_hr
         self.brady_limit = brady_limit
         self.tachy_limit = tachy_limit
-
-    def tb(self):
         self.tachy = []
         self.brady = []
+
+    def tb(self):
         count = 0
         for i in self.instant_hr:
             if count > 1:
