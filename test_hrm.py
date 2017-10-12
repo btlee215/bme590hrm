@@ -51,11 +51,4 @@ def test_tachbrady():
 
     """
     assert hrmcalcs.hrmtb([50,50,50,75,110,110,110]) ==([0,0,0,0,0,0,1],[0,0,1,0,0,0,0])
-=======
-    :return: This function is used as a unit test to ensure that brady and
-    tachycardia are being accurately detected in the hrmcalcs.py file.
 
-    """
-    assert hrmcalcs.hrmtb([50, 50, 50, 75, 110, 110, 110]) == \
-        ([0, 0, 0, 0, 0, 0, 1], [0, 0, 1, 0, 0, 0, 0])
->>>>>>> 1d72040df77cea6b970917a856fc86231f475dc8
