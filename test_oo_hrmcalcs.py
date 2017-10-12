@@ -8,6 +8,5 @@ def test_instant():
 
 def test_average():
     instant2 = hrmcalcs([0.65, 0.70, 0.80, 0.80, 0.70], np.array([45, 85, 95, 110, 140, 185]),1,3)
-    assert instant2.instant_hr == [80]
+    assert instant2.average_hr == [80]
 
-    
