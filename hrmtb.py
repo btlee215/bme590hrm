@@ -2,10 +2,12 @@ import numpy as np
 
 
 class TachyBrady:
-    def __init__(self, instant_hr):
+    def __init__(self, instant_hr, brady_limit, tachy_limit):
         self.instant_hr = instant_hr
+        self.brady_limit = brady_limit
+        self.tachy_limit = tachy_limit
 
-    def tb(self, brady_limit, tachy_limit):
+    def tb(self):
         self.tachy = []
         self.brady = []
         count = 0
