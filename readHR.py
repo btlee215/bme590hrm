@@ -5,29 +5,33 @@ import numpy as np
 class EcgReader:
 
     def __init__(self, file):
-        self.filecheck(file)
-        self.readfile()
-        self.datacheck()
-        if self.data_type == 1 and self.csv_check == 1:
+        self.file = file
+        self.csv_check = True
+        self.data_type = True
+        self.time = []
+        self.voltage = []
+        self.peak_vector = []
+        self.filecheck()
+        if self.csv_check == True:
+            self.readfile()
+            self.datacheck()
+        if self.data_type == True and self.csv_check == True:
             self.findrange()
 
-    def filecheck(self, file):
+    def filecheck(self):
         """
             This method takes in ECG data from a CSV file inputted by the user,
             and checks that it is the correct file format.
-
-            :param file: A CSV file being tested by the user
 
             :return: If the file is not a CSV, the function will raise
             "Error: File is not a .csv". For CSV files, the initialization
             will move on to the next step.
 
         """
-        self.file = file
-        if file.endswith('.csv'):
-            self.csv_check = 1
+        if self.file.endswith('.csv'):
+            self.csv_check = True
         else:
-            self.csv_check = 0
+            self.csv_check = False
             self.time = 0
             self.voltage = 0
             print("Error: File is not a .csv")
@@ -40,8 +44,6 @@ class EcgReader:
         :return: Time and voltage vectors with each entry from columns in the
         original csv file.
         """
-        self.time = []
-        self.voltage = []
         if self.file.endswith('.csv'):
             with open(self.file) as ecg_Data_File:
                 ecg_reader = csv.reader(ecg_Data_File)
@@ -76,35 +78,34 @@ class EcgReader:
             steps will not be performed.
 
             """
-        self.data_type = 1
         for i in self.time:
             if type(i) == str:
-                self.data_type = 0
+                self.data_type = False
                 print("Error: Time vector is wrong data type")
                 break
         for j in self.voltage:
             if type(j) == str:
-                self.data_type = 0
+                self.data_type = False
                 print("Error: Voltage vector is wrong data type")
                 break
 
     def findrange(self, peakthresh=0.9, basethresh=0.1):
 
-        toggle_peak_status = 0
+        toggle_peak_status = False
         import statistics
         peak_times = []
         baseline = statistics.median(self.voltage)
         pos_range = max(self.voltage)-baseline
         count = 0
         for i in self.voltage:
-            if toggle_peak_status == 0:
+            if toggle_peak_status == False:
                 if i > (baseline + peakthresh * pos_range):
-                    peak_times.append(round(self.time[count],2))
-                    toggle_peak_status = 1
+                    peak_times.append(round(self.time[count], 2))
+                    toggle_peak_status = True
                     count += 1
-            if toggle_peak_status == 1:
+            if toggle_peak_status == True:
                 if i < (baseline + basethresh * pos_range):
-                    toggle_peak_status = 0
+                    toggle_peak_status = False
                     count += 1
             else:
                 count += 1

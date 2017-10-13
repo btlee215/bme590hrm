@@ -13,14 +13,14 @@ def test_filecheck():
 
     """
     read_hr_1 = EcgReader('Test_ECG.txt')
-    assert read_hr_1.csv_check == 0
+    assert read_hr_1.csv_check == False
 
 
 def test_datacheck():
     read_hr_2 = EcgReader('Test_ECG.csv')
     read_hr_2.time = [2, "three", 4]
     read_hr_2.datacheck()
-    assert read_hr_2.data_type == 0
+    assert read_hr_2.data_type == False
 
 
 def test_findpeaks():
