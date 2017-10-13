@@ -19,7 +19,7 @@ def test_filecheck():
 def test_datacheck():
     read_hr_2 = EcgReader('Test_ECG.csv')
     read_hr_2.time = [2, "three", 4]
-    read_hr_2.dataCheck()
+    read_hr_2.datacheck()
     assert read_hr_2.data_type == 0
 
 
@@ -27,7 +27,7 @@ def test_findpeaks():
     read_hr_3 = EcgReader('Test_ECG.csv')
     read_hr_3.time = [0, 0.5, 1, 1.5, 2.0]
     read_hr_3.voltage = [10, 20, 30, 40, 50]
-    read_hr_3.findRange()
+    read_hr_3.findrange()
     assert read_hr_3.peak_vector == [2.0]
 
 
