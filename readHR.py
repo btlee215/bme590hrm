@@ -1,7 +1,3 @@
-import csv
-import numpy as np
-
-
 class EcgReader:
 
     def __init__(self, file):
@@ -15,7 +11,7 @@ class EcgReader:
         if self.csv_check:
             self.readfile()
             self.datacheck()
-        if self.data_type and self.csv_check :
+        if self.data_type and self.csv_check:
             self.findrange()
 
     def filecheck(self):
@@ -44,6 +40,8 @@ class EcgReader:
         :return: Time and voltage vectors with each entry from columns in the
         original csv file.
         """
+        import csv
+        import numpy as np
         if self.file.endswith('.csv'):
             with open(self.file) as ecg_Data_File:
                 ecg_reader = csv.reader(ecg_Data_File)
@@ -65,11 +63,6 @@ class EcgReader:
             This method takes in the time and voltage arrays and ensures that
             the data type for every element is a float.
 
-            :param self.time: Array of time values from .CSV file assigned to class
-
-            :param self.voltage: Array of voltage values from .CSV file assigned to
-            object of class EcgReader
-
             :return: If a particular element in time or voltage is not a float,
             the function will raise "Error: Time vector is wrong data type".
 
@@ -90,20 +83,20 @@ class EcgReader:
                 break
 
     def findrange(self, peakthresh=0.9, basethresh=0.1):
-
-        toggle_peak_status = False
         import statistics
+        import numpy as np
+        toggle_peak_status = False
         peak_times = []
         baseline = statistics.median(self.voltage)
         pos_range = max(self.voltage)-baseline
         count = 0
         for i in self.voltage:
-            if toggle_peak_status == False:
+            if not toggle_peak_status:
                 if i > (baseline + peakthresh * pos_range):
                     peak_times.append(round(self.time[count], 2))
                     toggle_peak_status = True
                     count += 1
-            if toggle_peak_status == True:
+            if toggle_peak_status:
                 if i < (baseline + basethresh * pos_range):
                     toggle_peak_status = False
                     count += 1
