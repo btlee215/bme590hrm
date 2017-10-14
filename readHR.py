@@ -12,10 +12,10 @@ class EcgReader:
         self.voltage = []
         self.peak_vector = []
         self.filecheck()
-        if self.csv_check == True:
+        if self.csv_check:
             self.readfile()
             self.datacheck()
-        if self.data_type == True and self.csv_check == True:
+        if self.data_type and self.csv_check :
             self.findrange()
 
     def filecheck(self):
