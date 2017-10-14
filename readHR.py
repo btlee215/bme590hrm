@@ -32,8 +32,8 @@ class EcgReader:
             self.csv_check = True
         else:
             self.csv_check = False
-            self.time = 0
-            self.voltage = 0
+            self.time = None
+            self.voltage = None
             print("Error: File is not a .csv")
 
     def readfile(self):
