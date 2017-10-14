@@ -45,7 +45,6 @@ def test_average():
 def test_tachbrady():
     """
 
-<<<<<<< HEAD
     :return: This function is used as a unit test to ensure that brady and tachycardia are being accurately detected in
     the hrmcalcs.py file.
 
