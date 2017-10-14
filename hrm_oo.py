@@ -9,21 +9,25 @@ class HrmOutput:
 
     def __init__(self, file='Test_ECG.csv', start_min=3, end_min=5,
                  brady_limit=60, tachy_limit=100):
-        self.extract_vals(file, start_min, end_min, brady_limit, tachy_limit)
         self.file = file
+        self.start_min = start_min
+        self.end_min = end_min
+        self.brady_limit = brady_limit
+        self.tachy_limit = tachy_limit
+        self.extract_vals()
         self.print_hrmoutput()
 
-    def extract_vals(self, file, start_min, end_min, brady_limit, tachy_limit):
-        read_ecg = EcgReader(file)
+    def extract_vals(self):
+        read_ecg = EcgReader(self.file)
         self.peak_vector = read_ecg.peak_vector
         timebeat = np.diff(read_ecg.peak_vector)
-        calc_ecg = hrmcalcs(timebeat, read_ecg.peak_vector, start_min, end_min)
+        calc_ecg = hrmcalcs(timebeat, read_ecg.peak_vector, self.start_min, self.end_min)
         calc_ecg.hrminstant()
         self.instant_hr = calc_ecg.instant_hr
         calc_ecg.hrmaverage()
         self.average_hr = calc_ecg.average_hr
-        tb_ecg = TachyBrady(self.instant_hr)
-        tb_ecg.tb(brady_limit, tachy_limit)
+        tb_ecg = TachyBrady(self.instant_hr, self.brady_limit,self.tachy_limit)
+        tb_ecg.tb()
         self.tachy = tb_ecg.tachy
         self.brady = tb_ecg.brady
 
@@ -38,7 +42,6 @@ class HrmOutput:
                                                np.round(row[1], 2),
                                                np.round(row[2], 2),
                                                np.round(row[3], 2)))
-            f.close()
 
 
 test_ecg = HrmOutput('Test_ECG.csv', 3, 5, 60, 100)
