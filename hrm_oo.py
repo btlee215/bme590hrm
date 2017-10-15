@@ -34,8 +34,8 @@ class HrmOutput:
         self.average_hr = None
         self.tachy = []
         self.brady = []
+        self.extract_vals()
         if self.valid_file:
-            self.extract_vals()
             self.print_hrmoutput()
 
     def extract_vals(self):
