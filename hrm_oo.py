@@ -9,7 +9,8 @@ class HrmOutput:
                  brady_limit=60, tachy_limit=100):
         """
 
-        :param file: The file to make heart rate calculations for
+        :param file: String representing ECG file used to make heart rate
+        calculations
 
         :param start_min: User-inputted value for the "starting minute" of
         average heart rate calculations, in minutes.
@@ -36,7 +37,7 @@ class HrmOutput:
         self.brady = []
         self.extract_vals()
         if self.valid_file:
-            self.print_hrmoutput()
+            self.print_hrm_output()
 
     def extract_vals(self):
         """
@@ -67,7 +68,7 @@ class HrmOutput:
             self.tachy = tb_ecg.tachy
             self.brady = tb_ecg.brady
 
-    def print_hrmoutput(self):
+    def print_hrm_output(self):
         """
         :return: This method returns a printed output file of the heartbeat
         occurrence time, the instantaneous heart rate, and the occurrence
@@ -87,4 +88,3 @@ class HrmOutput:
                                                np.round(row[3], 2)))
 
 
-test_ecg = HrmOutput('Test_ECG.csv', 3, 5, 60, 100)

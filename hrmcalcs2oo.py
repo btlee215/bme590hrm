@@ -19,7 +19,7 @@ class hrmcalcs:
         self.start_min = start_min
         self.end_min = end_min
         self.peakvalues = peakvalues
-        self.instant_hr = []
+        self.instant_hr = None
         self.average_hr = None
         self.hrminstant()
         self.hrmaverage()
@@ -33,6 +33,7 @@ class hrmcalcs:
         rate values.
         """
         import numpy as np
+        self.instant_hr = []
         for i in self.timebeat:
             a = round((60/i), 1)
             self.instant_hr.append(a)

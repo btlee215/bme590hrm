@@ -10,9 +10,6 @@ class TachyBrady:
         :param tachy_limit: The threshold value for tachycardia, with the
         default set at 100 bpm
 
-        :return: This method appends the resulting time values associated with
-         heart beats onto an array called peak_vector.
-
         """
         import numpy as np
         self.instant_hr = instant_hr
@@ -26,11 +23,8 @@ class TachyBrady:
         This method determines the occurrence of tachycardia and/or
         bradycardia.
 
-        :param peakthresh: User-inputted peak threshold value. Default is 0.9
-
-        :param basethresh: User-inputted base threshold value. Default is 0.1
-
-        :return: The
+        :return: This method appends the resulting time values associated with
+        heart beats onto an array called peak_vector.
         """
         count = 0
         for i in self.instant_hr:
