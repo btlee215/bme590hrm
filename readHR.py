@@ -1,6 +1,11 @@
 class EcgReader:
 
     def __init__(self, file):
+        """
+
+        :param file: Input file for ECG reading and calculations
+
+        """
         self.file = file
         self.csv_check = True
         self.data_type = True
@@ -70,7 +75,7 @@ class EcgReader:
             strings. If data_type is 0, some of the remaining initialization
             steps will not be performed.
 
-            """
+        """
         for i in self.time:
             if type(i) == str:
                 self.data_type = False
@@ -83,6 +88,18 @@ class EcgReader:
                 break
 
     def findrange(self, peakthresh=0.9, basethresh=0.1):
+        """
+        This method determines the range of what is considered as a heartbeat,
+        then determines the time values at which a heartbeat occurs.
+
+        :param peakthresh: User-inputted peak threshold value. Default is 0.9 V.
+
+        :param basethresh: User-inputted base threshold value. Default is 0.1 V.
+
+        :return: This method appends the resulting time values associated with
+         heart beats onto an array called peak_vector.
+
+        """
         import statistics
         import numpy as np
         toggle_peak_status = False

@@ -7,6 +7,22 @@ class HrmOutput:
 
     def __init__(self, file='Test_ECG.csv', start_min=3, end_min=5,
                  brady_limit=60, tachy_limit=100):
+        """
+
+        :param file: The file to make heart rate calculations for
+
+        :param start_min: User-inputted value for the "starting minute" of average
+        heart rate calculations, in minutes.
+
+        :param end_min: User-inputted value for the "ending minute" of average
+        heart rate calculations, in minutes.
+
+        :param brady_limit: The threshold value for bradycardia, with the default set
+        at 60 bpm
+
+        :param tachy_limit: The threshold value for tachycardia, with the default set
+        at 100 bpm
+        """
         self.file = file
         self.start_min = start_min
         self.end_min = end_min
@@ -23,6 +39,15 @@ class HrmOutput:
             self.print_hrmoutput()
 
     def extract_vals(self):
+        """
+        This method extracts the main vectors to be used towards calculations, using
+        the imported classes
+
+        :return: This method returns many main vectors, which are the following. Timebeat,
+        the time between heart beats, the instantaneous heart rate, the average heart rate,
+        along with the tachy and brady vectors, which marks the occurrences of tachycardia
+        and bradycardia respectively through vectors of 0s and 1s (1 marking an event detection).
+        """
         read_ecg = EcgReader(self.file)
         if read_ecg.csv_check and read_ecg.data_check:
             self.valid_file = True
@@ -41,6 +66,10 @@ class HrmOutput:
             self.brady = tb_ecg.brady
 
     def print_hrmoutput(self):
+        """
+        :return: This method returns a printed output file of the heartbeat occurrence
+        time, the instantaneous heart rate, and the occurrence of tachycardia or bradycardia.
+        """
         save_name = self.file.replace(".csv", "_HRoutput.txt")
         with open(save_name, "w") as f:
             f.write("Average HR in Interval: {} \n".
