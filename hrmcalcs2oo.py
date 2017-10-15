@@ -6,10 +6,11 @@ class hrmcalcs:
         in the peak values vector
 
         :param peakvalues: array containing time points at which voltage
-        condition was met to detect a heart beat. All vals are in terms of time(s)
+        condition was met to detect a heart beat. All vals are in terms of
+        time(s)
 
-        :param start_min: User-inputted value for the "starting minute" of average
-        heart rate calculations, in minutes.
+        :param start_min: User-inputted value for the "starting minute" of
+        average heart rate calculations, in minutes.
 
         :param end_min: User-inputted value for the "ending minute" of average
         heart rate calculations, in minutes.
@@ -25,10 +26,11 @@ class hrmcalcs:
 
     def hrminstant(self):
         """
-        This method calculates the instant heart rate values from timebeat, the time
-        occurrence of each heartbeat.
+        This method calculates the instant heart rate values from timebeat,
+        the time occurrence of each heartbeat.
 
-        :return: This method returns a stored vector of instantaneous heart rate values.
+        :return: This method returns a stored vector of instantaneous heart
+        rate values.
         """
         import numpy as np
         for i in self.timebeat:

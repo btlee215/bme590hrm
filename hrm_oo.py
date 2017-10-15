@@ -11,17 +11,17 @@ class HrmOutput:
 
         :param file: The file to make heart rate calculations for
 
-        :param start_min: User-inputted value for the "starting minute" of average
-        heart rate calculations, in minutes.
+        :param start_min: User-inputted value for the "starting minute" of
+        average heart rate calculations, in minutes.
 
         :param end_min: User-inputted value for the "ending minute" of average
         heart rate calculations, in minutes.
 
-        :param brady_limit: The threshold value for bradycardia, with the default set
-        at 60 bpm
+        :param brady_limit: The threshold value for bradycardia, with the
+        default set at 60 bpm
 
-        :param tachy_limit: The threshold value for tachycardia, with the default set
-        at 100 bpm
+        :param tachy_limit: The threshold value for tachycardia, with the
+        default set at 100 bpm
         """
         self.file = file
         self.start_min = start_min
@@ -40,13 +40,15 @@ class HrmOutput:
 
     def extract_vals(self):
         """
-        This method extracts the main vectors to be used towards calculations, using
-        the imported classes
+        This method extracts the main vectors to be used towards calculations,
+        using the imported classes
 
-        :return: This method returns many main vectors, which are the following. Timebeat,
-        the time between heart beats, the instantaneous heart rate, the average heart rate,
-        along with the tachy and brady vectors, which marks the occurrences of tachycardia
-        and bradycardia respectively through vectors of 0s and 1s (1 marking an event detection).
+        :return: This method returns many main vectors, which are the
+        following. Timebeat, the time between heart beats, the instantaneous
+        heart rate, the average heart rate, along with the tachy and brady
+        vectors, which marks the occurrences of tachycardia and bradycardia
+        respectively through vectors of 0s and 1s (1 marking an event
+        detection).
         """
         read_ecg = EcgReader(self.file)
         if read_ecg.csv_check and read_ecg.data_check:
@@ -67,8 +69,9 @@ class HrmOutput:
 
     def print_hrmoutput(self):
         """
-        :return: This method returns a printed output file of the heartbeat occurrence
-        time, the instantaneous heart rate, and the occurrence of tachycardia or bradycardia.
+        :return: This method returns a printed output file of the heartbeat
+        occurrence time, the instantaneous heart rate, and the occurrence
+        of tachycardia or bradycardia.
         """
         save_name = self.file.replace(".csv", "_HRoutput.txt")
         with open(save_name, "w") as f:

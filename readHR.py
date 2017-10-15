@@ -21,8 +21,8 @@ class EcgReader:
 
     def filecheck(self):
         """
-            This method takes in ECG data from a CSV file inputted by the user,
-            and checks that it is the correct file format.
+            This method takes in ECG data from a CSV file inputted by the
+            user, and checks that it is the correct file format.
 
             :return: If the file is not a CSV, the function will raise
             "Error: File is not a .csv". For CSV files, the initialization
@@ -92,9 +92,11 @@ class EcgReader:
         This method determines the range of what is considered as a heartbeat,
         then determines the time values at which a heartbeat occurs.
 
-        :param peakthresh: User-inputted peak threshold value. Default is 0.9 V.
+        :param peakthresh: User-inputted peak threshold value. Default is
+        0.9 V.
 
-        :param basethresh: User-inputted base threshold value. Default is 0.1 V.
+        :param basethresh: User-inputted base threshold value. Default is
+        0.1 V.
 
         :return: This method appends the resulting time values associated with
          heart beats onto an array called peak_vector.

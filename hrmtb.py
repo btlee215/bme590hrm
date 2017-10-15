@@ -1,14 +1,14 @@
 class TachyBrady:
-    def __init__(self, instant_hr, brady_limit = 60, tachy_limit = 100):
+    def __init__(self, instant_hr, brady_limit=60, tachy_limit=100):
         """
-        :param instant_hr: Takes instant_hr vector from hrmcalcs200, a stored vector
-        of instantaneous heart rate values
+        :param instant_hr: Takes instant_hr vector from hrmcalcs200, a stored
+        vector of instantaneous heart rate values
 
-        :param brady_limit: The threshold value for bradycardia, with the default set
-        at 60 bpm
+        :param brady_limit: The threshold value for bradycardia, with the
+        default set at 60 bpm
 
-        :param tachy_limit: The threshold value for tachycardia, with the default set
-        at 100 bpm
+        :param tachy_limit: The threshold value for tachycardia, with the
+        default set at 100 bpm
 
         :return: This method appends the resulting time values associated with
          heart beats onto an array called peak_vector.
@@ -23,7 +23,8 @@ class TachyBrady:
 
     def tb(self):
         """
-        This method determines the occurrence of tachycardia and/or bradycardia.
+        This method determines the occurrence of tachycardia and/or
+        bradycardia.
 
         :param peakthresh: User-inputted peak threshold value. Default is 0.9
 
