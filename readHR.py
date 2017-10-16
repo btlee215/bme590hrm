@@ -12,6 +12,7 @@ class EcgReader:
         self.time = []
         self.voltage = []
         self.peak_vector = []
+        self.is_valid_file = False
         self.filecheck()
         if self.csv_check:
             self.readfile()
@@ -62,6 +63,7 @@ class EcgReader:
                         self.voltage.append(v)
                     except:
                         self.voltage.append(row[1])
+            self.datacheck()
 
     def datacheck(self):
         """
@@ -71,32 +73,37 @@ class EcgReader:
             :return: If a particular element in time or voltage is not a float,
             the function will raise "Error: Time vector is wrong data type".
 
-            :return: self.data_type is a 1 if numeric and 0 if any entries are
-            strings. If data_type is 0, some of the remaining initialization
+            :return: self.data_type is a True if numeric and False if any entries are
+            strings. If data_type is False, some of the remaining initialization
             steps will not be performed.
 
+            :return: self.is_valid_file is True
+
         """
-        for i in self.time:
-            if type(i) == str:
-                self.data_type = False
-                print("Error: Time vector is wrong data type")
-                break
-        for j in self.voltage:
-            if type(j) == str:
-                self.data_type = False
-                print("Error: Voltage vector is wrong data type")
-                break
+        if self.csv_check:
+            for i in self.time:
+                if type(i) == str:
+                    self.data_type = False
+                    print("Error: Time vector is wrong data type")
+                    break
+            for j in self.voltage:
+                if type(j) == str:
+                    self.data_type = False
+                    print("Error: Voltage vector is wrong data type")
+                    break
+        if self.csv_check and self.data_check:
+            self.is_valid_file = True
 
     def findrange(self, peakthresh=0.9, basethresh=0.1):
         """
         This method determines the range of what is considered as a heartbeat,
         then determines the time values at which a heartbeat occurs.
 
-        :param peakthresh: User-inputted peak threshold value. Default is
+        :param peakthresh: Ratio of ranges used to detect peaks. Default is
         0.9 V.
 
-        :param basethresh: User-inputted base threshold value. Default is
-        0.1 V.
+        :param basethresh: Base threshold value to reset between peaks.
+        Default is 0.1 V.
 
         :return: This method appends the resulting time values associated with
          heart beats onto an array called peak_vector.
