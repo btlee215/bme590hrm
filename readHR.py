@@ -13,14 +13,14 @@ class EcgReader:
         self.voltage = []
         self.peak_vector = []
         self.is_valid_file = False
-        self.filecheck()
+        self.file_check()
         if self.csv_check:
-            self.readfile()
-            self.datacheck()
+            self.read_file()
+            self.data_check()
         if self.data_type and self.csv_check:
-            self.findrange()
+            self.find_range()
 
-    def filecheck(self):
+    def file_check(self):
         """
             This method takes in ECG data from a CSV file inputted by the
             user, and checks that it is the correct file format.
@@ -38,7 +38,7 @@ class EcgReader:
             self.voltage = None
             print("Error: File is not a .csv")
 
-    def readfile(self):
+    def read_file(self):
         """
         This method reads the contents of the csv file and attempts to convert
         numeric strings into floats before adding to time and voltage vectors.
@@ -63,9 +63,9 @@ class EcgReader:
                         self.voltage.append(v)
                     except:
                         self.voltage.append(row[1])
-            self.datacheck()
+            self.data_check()
 
-    def datacheck(self):
+    def data_check(self):
         """
             This method takes in the time and voltage arrays and ensures that
             the data type for every element is a float.
@@ -94,15 +94,15 @@ class EcgReader:
         if self.csv_check and self.data_type:
             self.is_valid_file = True
 
-    def findrange(self, peakthresh=0.9, basethresh=0.1):
+    def find_range(self, peak_thresh=0.9, base_thresh=0.1):
         """
         This method determines the range of what is considered as a heartbeat,
         then determines the time values at which a heartbeat occurs.
 
-        :param peakthresh: Ratio of ranges used to detect peaks. Default is
+        :param peak_thresh: Ratio of ranges used to detect peaks. Default is
         0.9 V.
 
-        :param basethresh: Base threshold value to reset between peaks.
+        :param base_thresh: Base threshold value to reset between peaks.
         Default is 0.1 V.
 
         :return: This method appends the resulting time values associated with
@@ -118,12 +118,12 @@ class EcgReader:
         count = 0
         for i in self.voltage:
             if not toggle_peak_status:
-                if i > (baseline + peakthresh * pos_range):
+                if i > (baseline + peak_thresh * pos_range):
                     peak_times.append(round(self.time[count], 2))
                     toggle_peak_status = True
                     count += 1
             if toggle_peak_status:
-                if i < (baseline + basethresh * pos_range):
+                if i < (baseline + base_thresh * pos_range):
                     toggle_peak_status = False
                     count += 1
             else:

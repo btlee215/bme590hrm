@@ -1,5 +1,5 @@
 class hrmcalcs:
-    def __init__(self, timebeat, peakvalues, start_min, end_min):
+    def __init__(self, timebeat, peak_values, start_min, end_min):
         """
         :param timebeat: amount of time between consecutive heart beats.
         Calculated by taking the difference of consecutive data points
@@ -18,13 +18,13 @@ class hrmcalcs:
         self.timebeat = timebeat
         self.start_min = start_min
         self.end_min = end_min
-        self.peakvalues = peakvalues
+        self.peak_values = peak_values
         self.instant_hr = None
         self.average_hr = None
-        self.hrminstant()
-        self.hrmaverage()
+        self.hrm_instant()
+        self.hrm_average()
 
-    def hrminstant(self):
+    def hrm_instant(self):
         """
         This method calculates the instant heart rate values from timebeat,
         the time occurrence of each heartbeat.
@@ -38,7 +38,7 @@ class hrmcalcs:
             a = round((60/i), 1)
             self.instant_hr.append(a)
 
-    def hrmaverage(self):
+    def hrm_average(self):
         """
         This method is used to calculate the average heart rate
         over a user-specified time range involving start_min and end_min.
@@ -49,7 +49,7 @@ class hrmcalcs:
         import numpy as np
         start_time = 60 * self.start_min
         end_time = 60 * self.end_min
-        start_index = np.argmax(self.peakvalues > start_time)
-        end_index = np.argmax(self.peakvalues > end_time)-1
+        start_index = np.argmax(self.peak_values > start_time)
+        end_index = np.argmax(self.peak_values > end_time)-1
         timevals = self.timebeat[start_index:(end_index-1)]
         self.average_hr = round(60/np.average(timevals), 4)

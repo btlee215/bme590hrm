@@ -58,9 +58,9 @@ class HrmOutput:
             timebeat = np.diff(read_ecg.peak_vector)
             calc_ecg = hrmcalcs(timebeat, read_ecg.peak_vector,
                                 self.start_min, self.end_min)
-            calc_ecg.hrminstant()
+            calc_ecg.hrm_instant()
             self.instant_hr = calc_ecg.instant_hr
-            calc_ecg.hrmaverage()
+            calc_ecg.hrm_average()
             self.average_hr = calc_ecg.average_hr
             tb_ecg = TachyBrady(self.instant_hr, self.brady_limit,
                                 self.tachy_limit)
