@@ -91,7 +91,7 @@ class EcgReader:
                     self.data_type = False
                     print("Error: Voltage vector is wrong data type")
                     break
-        if self.csv_check and self.data_check:
+        if self.csv_check and self.data_type:
             self.is_valid_file = True
 
     def findrange(self, peakthresh=0.9, basethresh=0.1):
