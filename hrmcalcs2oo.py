@@ -37,6 +37,7 @@ class hrmcalcs:
         for i in self.timebeat:
             a = round((60/i), 1)
             self.instant_hr.append(a)
+        return self.instant_hr
 
     def hrm_average(self):
         """
@@ -53,3 +54,4 @@ class hrmcalcs:
         end_index = np.argmax(self.peak_values > end_time)-1
         timevals = self.timebeat[start_index:(end_index-1)]
         self.average_hr = round(60/np.average(timevals), 4)
+        return self.average_hr

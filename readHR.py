@@ -129,3 +129,4 @@ class EcgReader:
             else:
                 count += 1
             self.peak_vector = np.array(peak_times)
+        return self.peak_vector

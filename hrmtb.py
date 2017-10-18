@@ -46,3 +46,4 @@ class TachyBrady:
                 self.brady.append(0)
                 self.tachy.append(0)
             count += 1
+        return self.tachy, self.brady
