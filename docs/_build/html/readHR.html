@@ -1,0 +1,206 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>readHR module &#8212; Heart Rate Monitor 1.0 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-readHR">
+<span id="readhr-module"></span><h1>readHR module<a class="headerlink" href="#module-readHR" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="readHR.EcgReader">
+<em class="property">class </em><code class="descclassname">readHR.</code><code class="descname">EcgReader</code><span class="sig-paren">(</span><em>file</em><span class="sig-paren">)</span><a class="headerlink" href="#readHR.EcgReader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="readHR.EcgReader.data_check">
+<code class="descname">data_check</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#readHR.EcgReader.data_check" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method takes in the time and voltage arrays and ensures that
+the data type for every element is a float.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">If a particular element in time or voltage is not a float,</td>
+</tr>
+</tbody>
+</table>
+<p>the function will raise “Error: Time vector is wrong data type”.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">self.data_type is a True if numeric and False if any entries are</td>
+</tr>
+</tbody>
+</table>
+<p>strings. If data_type is False, some of the remaining initialization
+steps will not be performed.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">self.is_valid_file is True</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="readHR.EcgReader.file_check">
+<code class="descname">file_check</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#readHR.EcgReader.file_check" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method takes in ECG data from a CSV file inputted by the
+user, and checks that it is the correct file format.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">If the file is not a CSV, the function will raise</td>
+</tr>
+</tbody>
+</table>
+<p>“Error: File is not a .csv”. For CSV files, the initialization
+will move on to the next step.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="readHR.EcgReader.find_range">
+<code class="descname">find_range</code><span class="sig-paren">(</span><em>peak_thresh=0.9</em>, <em>base_thresh=0.1</em><span class="sig-paren">)</span><a class="headerlink" href="#readHR.EcgReader.find_range" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method determines the range of what is considered as a heartbeat,
+then determines the time values at which a heartbeat occurs.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>peak_thresh</strong> – Ratio of ranges used to detect peaks. Default is</td>
+</tr>
+</tbody>
+</table>
+<p>0.9 V.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>base_thresh</strong> – Base threshold value to reset between peaks.</td>
+</tr>
+</tbody>
+</table>
+<p>Default is 0.1 V.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">This method appends the resulting time values associated with
+heart beats onto an array called peak_vector.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="readHR.EcgReader.read_file">
+<code class="descname">read_file</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#readHR.EcgReader.read_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method reads the contents of the csv file and attempts to convert
+numeric strings into floats before adding to time and voltage vectors.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Time and voltage vectors with each entry from columns in the</td>
+</tr>
+</tbody>
+</table>
+<p>original csv file.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Heart Rate Monitor</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Sameer, Alice, Ben.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="_sources/readHR.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

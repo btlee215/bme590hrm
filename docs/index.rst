@@ -9,6 +9,13 @@ Welcome to Heart Rate Monitor's documentation!
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
+   readHR
+   hrmcalcs2oo
+   hrmtb
+   hrm_oo
+   test_oo_hrmread
+   test_oo_hrmcalcs
+   test_tb_oo
    hrmcalcs
    hrmoutput
    hrmread
