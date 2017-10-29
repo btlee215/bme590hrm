@@ -32,18 +32,18 @@ class TachyBrady:
                 if self.instant_hr[count] < self.brady_limit and \
                         self.instant_hr[count - 1] < self.brady_limit and \
                         self.instant_hr[count - 2] < self.brady_limit:
-                    self.brady.append(1)
-                    self.tachy.append(0)
+                    self.brady.append("true")
+                    self.tachy.append("false")
                 elif self.instant_hr[count] > self.tachy_limit and \
                         self.instant_hr[count - 1] > self.tachy_limit and \
                         self.instant_hr[count - 2] > self.tachy_limit:
-                    self.brady.append(0)
-                    self.tachy.append(1)
+                    self.brady.append("false")
+                    self.tachy.append("true")
                 else:
-                    self.brady.append(0)
-                    self.tachy.append(0)
+                    self.brady.append("false")
+                    self.tachy.append("false")
             else:
-                self.brady.append(0)
-                self.tachy.append(0)
+                self.brady.append("false")
+                self.tachy.append("false")
             count += 1
         return self.tachy, self.brady

@@ -5,7 +5,7 @@ from hrmtb import TachyBrady
 
 class HrmOutput:
 
-    def __init__(self, file='Test_ECG.csv', start_min=3, end_min=5,
+    def __init__(self, file='Test_ECG.csv', average_window=20,
                  brady_limit=60, tachy_limit=100):
         """
 
@@ -25,8 +25,7 @@ class HrmOutput:
         default set at 100 bpm
         """
         self.file = file
-        self.start_min = start_min
-        self.end_min = end_min
+        self.average_window = average_window
         self.brady_limit = brady_limit
         self.tachy_limit = tachy_limit
         self.valid_file = False
@@ -55,9 +54,10 @@ class HrmOutput:
         if read_ecg.csv_check and read_ecg.data_check:
             self.valid_file = True
             self.peak_vector = read_ecg.peak_vector
+            self.time = read_ecg.time
             timebeat = np.diff(read_ecg.peak_vector)
-            calc_ecg = hrmcalcs(timebeat, read_ecg.peak_vector,
-                                self.start_min, self.end_min)
+            calc_ecg = hrmcalcs(self.time, timebeat, read_ecg.peak_vector,
+                                self.average_window)
             calc_ecg.hrm_instant()
             self.instant_hr = calc_ecg.instant_hr
             calc_ecg.hrm_average()
@@ -76,15 +76,13 @@ class HrmOutput:
         """
         save_name = self.file.replace(".csv", "_HRoutput.txt")
         with open(save_name, "w") as f:
-            f.write("Average HR in Interval: {} \n".
-                    format(np.round(self.average_hr)))
-            f.write("Time of Heartbeat (s), Instant HR, Bradycardia (0/1), "
-                    "Tachycardia (0/1)\n")
-            for row in list(zip(self.peak_vector, self.instant_hr,
+            f.write("Time of Heartbeat (s), Instant HR, Average HR, Bradycardia (true/false), "
+                    "Tachycardia (true/false)\n")
+            for row in list(zip(self.peak_vector, self.instant_hr, self.average_hr,
                                 self.brady, self.tachy)):
                 f.write("{},{},{},{}\n".format(np.round(row[0], 2),
                                                np.round(row[1], 2),
                                                np.round(row[2], 2),
-                                               np.round(row[3], 2)))
-
-
+                                               np.round(row[3], 2)),
+                                               np.round(row[4], 2))
+    
