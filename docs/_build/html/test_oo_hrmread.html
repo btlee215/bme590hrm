@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>bme590hrm &#8212; Heart Rate Monitor 1.0 documentation</title>
+    <title>test_oo_hrmread module &#8212; Heart Rate Monitor 1.0 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
@@ -38,23 +38,35 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="bme590hrm">
-<h1>bme590hrm<a class="headerlink" href="#bme590hrm" title="Permalink to this headline">¶</a></h1>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="readHR.html">readHR module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="test_oo_hrmread.html">test_oo_hrmread module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="hrmcalcs2oo.html">hrmcalcs2oo module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="test_oo_hrmcalcs.html">test_oo_hrmcalcs module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="hrmtb.html">hrmtb module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="test_tb_oo.html">test_tb_oo module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="hrm_oo.html">hrm_oo module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="hrmcalcs.html">hrmcalcs module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="hrmoutput.html">hrmoutput module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="hrmread.html">hrmread module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="test_hrm.html">test_hrm module</a></li>
-</ul>
-</div>
+  <div class="section" id="module-test_oo_hrmread">
+<span id="test-oo-hrmread-module"></span><h1>test_oo_hrmread module<a class="headerlink" href="#module-test_oo_hrmread" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="test_oo_hrmread.test_data_check">
+<code class="descclassname">test_oo_hrmread.</code><code class="descname">test_data_check</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#test_oo_hrmread.test_data_check" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="test_oo_hrmread.test_file_check">
+<code class="descclassname">test_oo_hrmread.</code><code class="descname">test_file_check</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#test_oo_hrmread.test_file_check" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">This function is used as a unit test for the hrmread.py file.</td>
+</tr>
+</tbody>
+</table>
+<p>In this test, the following conditions are tested: whether the file
+input by the user is in .CSV format, whether the time and voltage
+values from the file are floats, and whether the code correctly
+determines the time point a beat occured at.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="test_oo_hrmread.test_find_peaks">
+<code class="descclassname">test_oo_hrmread.</code><code class="descname">test_find_peaks</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#test_oo_hrmread.test_find_peaks" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </div>
 
 
@@ -103,7 +115,7 @@
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
       |
-      <a href="_sources/modules.rst.txt"
+      <a href="_sources/test_oo_hrmread.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 

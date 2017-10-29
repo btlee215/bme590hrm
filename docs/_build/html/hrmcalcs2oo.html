@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>bme590hrm &#8212; Heart Rate Monitor 1.0 documentation</title>
+    <title>hrmcalcs2oo module &#8212; Heart Rate Monitor 1.0 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
@@ -38,23 +38,46 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="bme590hrm">
-<h1>bme590hrm<a class="headerlink" href="#bme590hrm" title="Permalink to this headline">¶</a></h1>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="readHR.html">readHR module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="test_oo_hrmread.html">test_oo_hrmread module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="hrmcalcs2oo.html">hrmcalcs2oo module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="test_oo_hrmcalcs.html">test_oo_hrmcalcs module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="hrmtb.html">hrmtb module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="test_tb_oo.html">test_tb_oo module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="hrm_oo.html">hrm_oo module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="hrmcalcs.html">hrmcalcs module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="hrmoutput.html">hrmoutput module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="hrmread.html">hrmread module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="test_hrm.html">test_hrm module</a></li>
-</ul>
-</div>
+  <div class="section" id="module-hrmcalcs2oo">
+<span id="hrmcalcs2oo-module"></span><h1>hrmcalcs2oo module<a class="headerlink" href="#module-hrmcalcs2oo" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="hrmcalcs2oo.hrmcalcs">
+<em class="property">class </em><code class="descclassname">hrmcalcs2oo.</code><code class="descname">hrmcalcs</code><span class="sig-paren">(</span><em>timebeat</em>, <em>peak_values</em>, <em>start_min</em>, <em>end_min</em><span class="sig-paren">)</span><a class="headerlink" href="#hrmcalcs2oo.hrmcalcs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="hrmcalcs2oo.hrmcalcs.hrm_average">
+<code class="descname">hrm_average</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#hrmcalcs2oo.hrmcalcs.hrm_average" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method is used to calculate the average heart rate
+over a user-specified time range involving start_min and end_min.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">This method returns the average heart rate</td>
+</tr>
+</tbody>
+</table>
+<p>over the user-defined range of minutes.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="hrmcalcs2oo.hrmcalcs.hrm_instant">
+<code class="descname">hrm_instant</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#hrmcalcs2oo.hrmcalcs.hrm_instant" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method calculates the instant heart rate values from timebeat,
+the time occurrence of each heartbeat.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">This method returns a stored vector of instantaneous heart</td>
+</tr>
+</tbody>
+</table>
+<p>rate values.</p>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 
 
@@ -103,7 +126,7 @@
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
       |
-      <a href="_sources/modules.rst.txt"
+      <a href="_sources/hrmcalcs2oo.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 
