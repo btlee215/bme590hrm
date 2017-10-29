@@ -76,15 +76,13 @@ class HrmOutput:
         """
         save_name = self.file.replace(".csv", "_HRoutput.txt")
         with open(save_name, "w") as f:
-            f.write("Average HR in Interval: {} \n".
-                    format(np.round(self.average_hr)))
-            f.write("Time of Heartbeat (s), Instant HR, Bradycardia (0/1), "
-                    "Tachycardia (0/1)\n")
-            for row in list(zip(self.peak_vector, self.instant_hr,
+            f.write("Time of Heartbeat (s), Instant HR, Average HR, Bradycardia (true/false), "
+                    "Tachycardia (true/false)\n")
+            for row in list(zip(self.peak_vector, self.instant_hr, self.average_hr,
                                 self.brady, self.tachy)):
                 f.write("{},{},{},{}\n".format(np.round(row[0], 2),
                                                np.round(row[1], 2),
                                                np.round(row[2], 2),
-                                               np.round(row[3], 2)))
-
-
+                                               np.round(row[3], 2)),
+                                               np.round(row[4], 2))
+    
