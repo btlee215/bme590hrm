@@ -85,4 +85,3 @@ class HrmOutput:
                                                np.round(row[2], 2),
                                                np.round(row[3], 2)),
                                                np.round(row[4], 2))
-    
