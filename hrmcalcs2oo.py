@@ -58,7 +58,9 @@ class hrmcalcs:
         toggle_first_heartbeat = False
         average_hr = 0
         for i in self.time:
-            if i >= self.peak_values[1]:
+            if len(self.peak_values) == 1:
+                toggle_first_heartbeat = True
+            elif i >= self.peak_values[1]:
                 toggle_first_heartbeat = True
             if toggle_first_heartbeat:
                 if (i - self.average_window) > 0:
