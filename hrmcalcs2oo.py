@@ -37,11 +37,11 @@ class hrmcalcs:
         count_index = 0
         instant_hr = 0
         for i in self.time:
-            if i == peak_values[count_index]:
+            if i == self.peak_values[count_index]:
                 if count_index != 0:
-                    instant_hr = round((60/timebeat[count_index - 1]),1)
+                    instant_hr = round((60/self.timebeat[count_index - 1]),1)
                 count_index += 1
-            self.instant_hr.append(instant_hr)
+            self.instant_hr.append(round(instant_hr, 1))
         return self.instant_hr
 
     def hrm_average(self):
@@ -54,14 +54,26 @@ class hrmcalcs:
         """
         import numpy as np
         self.average_hr = []
+        toggle_first_heartbeat = False
+        average_hr = 0
         for i in self.time:
-            if (i - average_window) > 0:
-                start_index = np.argmax(self.peak_values > (i-average_window))
-                end_index = np.argmax(self.peak_values > i)-1
-            else:
-                start_index = 0
-                end_index = np.argmax(self.peak_values > i) - 1
-            timevals = self.timebeat[start_index:(end_index-1)]
-            average_hr = round(60/np.average(timevals), 4)
-            self.average_hr.append(average_hr)
+            if i >= self.peak_values[1]:
+                toggle_first_heartbeat = True
+            if toggle_first_heartbeat:
+                if (i - self.average_window) > 0:
+                    start_index = np.argmax(np.array(self.peak_values) >= (i - self.average_window))
+                    end_index = np.argmax(np.array(self.peak_values) > i)-1
+                else:
+                    start_index = 0
+                    end_index = np.argmax(np.array(self.peak_values) > i) - 1
+                if (end_index < 1):
+                    end_index = len(np.array(self.peak_values))
+                if (end_index - 1) > start_index:
+                    timevals = self.timebeat[(start_index):(end_index)]
+                else:
+                    if start_index == (len(np.array(self.peak_values)) - 1):
+                        start_index = start_index - 1
+                    timevals = self.timebeat[start_index]
+                average_hr = 60/np.average(timevals)
+            self.average_hr.append(round(average_hr, 0))
         return self.average_hr
