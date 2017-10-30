@@ -40,7 +40,8 @@ class hrmcalcs:
             if i == self.peak_values[count_index]:
                 if count_index != 0:
                     instant_hr = round((60/self.timebeat[count_index - 1]),1)
-                count_index += 1
+                if count_index < (len(self.peak_values)-1):
+                    count_index += 1
             self.instant_hr.append(round(instant_hr, 1))
         return self.instant_hr
 
