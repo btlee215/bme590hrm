@@ -75,7 +75,8 @@ class hrmcalcs:
                     timevals = self.timebeat[(start_index):(end_index)]
                 else:
                     if start_index == (len(np.array(self.peak_values)) - 1):
-                        start_index = start_index - 1
+                        if len(self.peak_values)>1:
+                            start_index = start_index - 1
                     timevals = self.timebeat[start_index]
                 average_hr = 60/np.average(timevals)
             self.average_hr.append(round(average_hr, 0))
